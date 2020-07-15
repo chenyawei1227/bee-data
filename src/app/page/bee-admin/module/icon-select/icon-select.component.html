@@ -1,0 +1,30 @@
+<bee-label [title]="elementState.title" [required]="isRequired"></bee-label>
+<ng-select [items]="elementState.items"
+           [virtualScroll]="true"
+           [loading]="loading"
+           bindLabel="code"
+           bindValue="code"
+           (scroll)="onScroll($event)"
+           (scrollToEnd)="onScrollToEnd()"
+           [placeholder]="elementState.placeholder"
+           [formControl]="beeRFC"
+           [typeahead]="searchEvent"
+           typeToSearchText="可搜索"
+           [ngClass]="{
+            'is-valid': beeRFC.valid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched),
+            'is-invalid': beeRFC.invalid && (beeForm.submitted || beeRFC.dirty || beeRFC.touched)
+          }"
+>
+  <ng-template ng-label-tmp let-item="item">
+    <b><i style="min-width: 30px;" class="{{item.code}}" ></i> </b> {{item.code}}
+  </ng-template>
+  <ng-template ng-header-tmp>
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-index="index">
+    <b><i style="min-width: 30px;" class="{{item.code}}" ></i> </b> {{item.type}} <> {{item.code}}
+  </ng-template>
+  <ng-template ng-footer-tmp>
+    <small class="form-text text-muted">Loaded {{elementState.items.length}} of {{totalRecord}}</small>
+  </ng-template>
+</ng-select>
+<bee-error-msg [title]="elementState.title" [validateFormControl]="beeRFC" [validateForm]="beeForm"></bee-error-msg>

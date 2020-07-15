@@ -1,0 +1,8 @@
+<h4 class="font-weight-bold py-3 mb-4">
+  <span class="text-muted font-weight-light">Icons /</span> Font Awesome 5
+</h4>
+
+<bee-gird *ngIf="!showAED" [gridSupportInstance]="this"></bee-gird>
+<ng-template #moduleIconTemplate let-value="value">
+  <i [class]="value" ngbTooltip="{{value}}"></i>
+</ng-template>

@@ -1,0 +1,24 @@
+<bee-module-aed *ngIf="showAED" [type]="operationType" [rowId]="dataFlag" (returnFn)="returnOperation($event)"></bee-module-aed>
+<bee-gird *ngIf="!showAED" [gridSupportInstance]="this" [moreOperation]="moreOperation"></bee-gird>
+
+<context-menu #moreOperation>
+  <ng-template contextMenuItem >模块查询配置</ng-template>
+  <ng-template contextMenuItem [subMenu]="basicSubMenu">{{moreOperation.item.icon}}</ng-template>
+  <context-menu #basicSubMenu>
+    <ng-template contextMenuItem>Lock</ng-template>
+    <ng-template contextMenuItem>Update</ng-template>
+    <ng-template contextMenuItem>Delete</ng-template>
+  </context-menu>
+  <ng-template contextMenuItem divider="true"></ng-template>
+  <ng-template contextMenuItem passive="true">
+    <input type="text" class="form-control form-control-sm" placeholder="Dropdown input">
+  </ng-template>
+</context-menu>
+
+<ng-template #moduleIconTemplate let-value="value">
+  <i [class]="value"></i>
+</ng-template>
+
+
+
+
